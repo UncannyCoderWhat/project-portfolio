@@ -1,0 +1,311 @@
+/* CSS VARIABLES - The Color Palette */
+:root {
+  --bg-dark: #0a0a0c;
+  --bg-panel: #161619;
+  --text-main: #e2e2e2;
+  --text-muted: #888888;
+  --accent-color: #f3c623; 
+  --border-color: #333333;
+  
+  --font-display: 'Chakra Petch', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* LOGO STYLES */
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 40px; /* Adjust this value to fit your header */
+  width: auto;  /* Keeps the aspect ratio correct */
+  /*filter: brightness(0) invert(1);*/ /* Optional: This turns a black logo white to match the theme */
+  transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+  transform: scale(1.05);
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-display);
+  overflow-x: hidden;
+  line-height: 1.6;
+  /* Subtle grid background */
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+}
+
+/* NAVIGATION */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  background: rgba(10, 10, 12, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 1000;
+}
+
+.logo {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--text-main);
+  text-decoration: none;
+}
+
+.logo span {
+  color: var(--accent-color);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+nav ul li a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: var(--accent-color);
+}
+
+/* BUTTON STYLES (Clipping Path for Sci-Fi cut corners) */
+.btn {
+  display: inline-block;
+  background: transparent;
+  color: var(--text-main);
+  padding: 12px 28px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--border-color);
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s;
+  /* Cut bottom-right corner */
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: var(--accent-color);
+  z-index: -1;
+  transition: width 0.3s ease;
+}
+
+.btn:hover {
+  color: var(--bg-dark);
+  border-color: var(--accent-color);
+}
+
+.btn:hover::before {
+  width: 100%;
+}
+
+/* SECTION CONTAINERS */
+section {
+  min-height: 100vh;
+  padding: 120px 10% 60px 10%;
+  position: relative;
+}
+
+.section-tag {
+  font-family: var(--font-mono);
+  color: var(--accent-color);
+  font-size: 2rem;
+  letter-spacing: 2px;
+  margin-bottom: 1px;
+  display: block;
+}
+
+.section-title {
+  font-size: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+/* HERO SECTION UPDATES */
+#home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  width: 100%;
+}
+
+.hero-content {
+  flex: 1;
+}
+
+.hero-glitch {
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.hero-subtitle {
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-size: 1rem;
+  max-width: 500px;
+  margin-bottom: 40px;
+  text-align: justify;
+}
+
+/* PHOTO CONTAINER STYLE */
+.hero-image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.photo-frame {
+  width: 350px;
+  height: 450px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  position: relative;
+  /* Cut-corner style */
+  clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+  overflow: hidden;
+}
+
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(40%) contrast(110%); /* Tech-aesthetic filter */
+  opacity: 0.8;
+  transition: all 0.5s ease;
+}
+
+.photo-frame:hover .hero-photo {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+.frame-overlay {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent-color);
+  background: rgba(0,0,0,0.6);
+  padding: 2px 8px;
+}
+
+
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 968px) {
+  .lore-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border-color);
+  padding: 40px 10%;
+  display: flex;
+  flex-direction: column; /* Stacks Logo, Links, and Copyright vertically */
+  align-items: center;    /* Centers everything horizontally */
+  gap: 10px;              /* Adds breathing room between the logo and text */
+}
+
+.logo-image img {
+  height: 100px;    /* Change this value to make it bigger or smaller */
+  width: auto;     /* Maintains the original aspect ratio */
+  display: block;  /* Removes extra bottom spacing */
+  margin: 0 auto;  /* Keeps it centered if the parent is wide */
+}
+
+.hero-tech-lines {
+  position: absolute;
+  right: 10%;
+  bottom: 10%;
+  font-family: var(--font-mono);
+  color: var(--border-color);
+  text-align: right;
+  font-size: 0.7rem;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 968px) {
+  .hero-container {
+    flex-direction: column-reverse; /* Put photo above text on mobile */
+    text-align: center;
+    gap: 40px;
+  }
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .photo-frame {
+    width: 280px;
+    height: 350px;
+  }
+  .hero-glitch {
+    font-size: 3rem;
+  }
+}
