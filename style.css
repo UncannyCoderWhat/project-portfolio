@@ -36,6 +36,9 @@
 }
 
 body {
+  opacity: 0;
+  background-color: #000; /* Ensure it starts in total darkness */
+  transition: opacity 1.2s ease-in-out;
   background-color: var(--bg-dark);
   color: var(--text-main);
   font-family: var(--font-display);
@@ -46,6 +49,19 @@ body {
     linear-gradient(rgba(243, 198, 35, 0.09) 1px, transparent 1px),
     linear-gradient(90deg, rgba(243, 198, 35, 0.05) 1px, transparent 1px);
   background-size: 40px 40px;
+}
+
+body.system-online {
+  opacity: 1;
+}
+
+body.booting::before {
+  animation: scanline-boot 0.8s ease-out;
+}
+
+@keyframes scanline-boot {
+  0% { top: 0; opacity: 1; }
+  100% { top: 100%; opacity: 0; }
 }
 
 /* SCROLLBAR */
@@ -597,8 +613,22 @@ section {
   .hover-brackets { display: none; } /* Hide brackets on small screens so text doesn't overlap */
 }
 
+/* SCROLL REVEAL ANIMATIONS */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
 /* FOOTER */
 footer {
+  scroll-snap-align: end; /* Snaps to the bottom of the footer instead of the top */
   border-top: 1px solid var(--border-color);
   padding: 40px 10%;
   display: flex;
@@ -622,18 +652,6 @@ footer {
   color: var(--border-color);
   text-align: right;
   font-size: 0.7rem;
-}
-
-/* SCROLL REVEAL ANIMATIONS */
-.reveal {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.8s ease-out;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* MOBILE RESPONSIVENESS */
