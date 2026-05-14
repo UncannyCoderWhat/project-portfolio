@@ -374,7 +374,8 @@ footer {
 
 /* VIDEO CONTAINER STYLES */
 .card-video-container {
-  height: 200px;
+  /* Remove the height: 200px; */
+  aspect-ratio: 16 / 9; /* Matches standard video shape */
   background: #000;
   position: relative;
   border-bottom: 1px solid var(--border-color);
