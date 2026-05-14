@@ -624,6 +624,18 @@ footer {
   font-size: 0.7rem;
 }
 
+/* SCROLL REVEAL ANIMATIONS */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* MOBILE RESPONSIVENESS */
 @media (max-width: 968px) {
   .hero-container {
