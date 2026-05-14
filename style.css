@@ -345,33 +345,6 @@ section {
   }
 }
 
-/* FOOTER */
-footer {
-  border-top: 1px solid var(--border-color);
-  padding: 40px 10%;
-  display: flex;
-  flex-direction: column; /* Stacks Logo, Links, and Copyright vertically */
-  align-items: center;    /* Centers everything horizontally */
-  gap: 10px;              /* Adds breathing room between the logo and text */
-}
-
-.logo-image img {
-  height: 100px;    /* Change this value to make it bigger or smaller */
-  width: auto;     /* Maintains the original aspect ratio */
-  display: block;  /* Removes extra bottom spacing */
-  margin: 0 auto;  /* Keeps it centered if the parent is wide */
-}
-
-.hero-tech-lines {
-  position: absolute;
-  right: 10%;
-  bottom: 10%;
-  font-family: var(--font-mono);
-  color: var(--border-color);
-  text-align: right;
-  font-size: 0.7rem;
-}
-
 /* VIDEO CONTAINER STYLES */
 .card-video-container {
   aspect-ratio: 16 / 9; /* Matches standard video shape */
@@ -441,6 +414,33 @@ footer {
 
 .card:hover .card-tech span {
   background: var(--accent-color); /* Tech tags turn yellow on card hover */
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border-color);
+  padding: 40px 10%;
+  display: flex;
+  flex-direction: column; /* Stacks Logo, Links, and Copyright vertically */
+  align-items: center;    /* Centers everything horizontally */
+  gap: 10px;              /* Adds breathing room between the logo and text */
+}
+
+.logo-image img {
+  height: 100px;    /* Change this value to make it bigger or smaller */
+  width: auto;     /* Maintains the original aspect ratio */
+  display: block;  /* Removes extra bottom spacing */
+  margin: 0 auto;  /* Keeps it centered if the parent is wide */
+}
+
+.hero-tech-lines {
+  position: absolute;
+  right: 10%;
+  bottom: 10%;
+  font-family: var(--font-mono);
+  color: var(--border-color);
+  text-align: right;
+  font-size: 0.7rem;
 }
 
 /* MOBILE RESPONSIVENESS */
