@@ -416,6 +416,187 @@ section {
   background: var(--accent-color); /* Tech tags turn yellow on card hover */
 }
 
+/* CONTACT SECTION STYLES */
+
+.contact-container {
+  max-width: 800px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  padding: 40px;
+  position: relative;
+  /* Cut corners for the main terminal box */
+  clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);
+}
+
+/* TERMINAL HEADER & PULSING DOT */
+.terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #00ff41; /* Tech Green */
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00ff41;
+  animation: pulse-live 1.5s infinite alternate;
+}
+
+@keyframes pulse-live {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  100% { transform: scale(1.2); opacity: 1; }
+}
+
+.terminal-text {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+}
+
+.contact-desc {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+/* CONTACT LINKS GRID */
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* INTERACTIVE CONTACT CARDS */
+.contact-card {
+  display: flex;
+  align-items: center;
+  padding: 20px 25px;
+  background: rgba(10, 10, 12, 0.5); /* Slightly darker than panel */
+  border: 1px solid var(--border-color);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* The Animated Scanner Line */
+.card-scanner {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(243, 198, 35, 0.1), transparent);
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+/* Hover States for the Card */
+.contact-card:hover {
+  border-color: var(--accent-color);
+  background: rgba(243, 198, 35, 0.05); /* Faint yellow glow */
+  transform: translateX(10px); /* Slides the whole box to the right slightly */
+}
+
+.contact-card:hover .card-scanner {
+  left: 200%; /* Triggers the scanner line to sweep across */
+  transition: left 0.8s ease;
+}
+
+/* ICON STYLING */
+.contact-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  z-index: 2;
+}
+
+.contact-icon-wrapper svg {
+  width: 24px;
+  height: 24px;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+}
+
+.contact-card:hover .contact-icon-wrapper svg {
+  color: var(--accent-color); /* Icons turn yellow on hover */
+  transform: scale(1.1);
+}
+
+/* TEXT STYLING */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  flex-grow: 1;
+}
+
+.contact-type {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;
+}
+
+.contact-value {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--text-main);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.contact-card:hover .contact-value {
+  color: var(--accent-color);
+}
+
+/* THE CYBER BRACKETS ANIMATION */
+.hover-brackets {
+  position: absolute;
+  right: 25px;
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  color: var(--accent-color);
+  opacity: 0;
+  display: flex;
+  gap: 30px; /* Distance between brackets */
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.bracket {
+  transition: transform 0.3s ease;
+}
+
+.left-bracket { transform: translateX(20px); }
+.right-bracket { transform: translateX(-20px); }
+
+/* When you hover, the brackets appear and snap outward */
+.contact-card:hover .hover-brackets {
+  opacity: 1;
+}
+
+.contact-card:hover .left-bracket { transform: translateX(0); }
+.contact-card:hover .right-bracket { transform: translateX(0); }
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+  .contact-container { padding: 20px; }
+  .contact-value { font-size: 0.9rem; }
+  .hover-brackets { display: none; } /* Hide brackets on small screens so text doesn't overlap */
+}
+
 /* FOOTER */
 footer {
   border-top: 1px solid var(--border-color);
