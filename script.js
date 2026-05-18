@@ -31,6 +31,64 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(section => {
         revealOnScroll.observe(section);
     });
+
+    /* PROJECT SLIDER LOGIC */
+    const sliderWrapper = document.querySelector('.project-slider-wrapper');
+    const grid = document.querySelector('.project-grid');
+    const cards = document.querySelectorAll('.card');
+    const nextBtn = document.querySelector('.next-btn');
+    const prevBtn = document.querySelector('.prev-btn');
+    
+    let currentIndex = 0;
+
+    function updateSlider() {
+        // Add glitch effect
+        sliderWrapper.classList.add('glitching');
+        
+        const offset = currentIndex * -100;
+        grid.style.transform = `translateX(${offset}%)`;
+
+        // Remove glitch effect after animation completes
+        setTimeout(() => {
+            sliderWrapper.classList.remove('glitching');
+        }, 300);
+    }
+
+    nextBtn?.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % cards.length;
+        updateSlider();
+    });
+
+    prevBtn?.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+        updateSlider();
+    });
+
+    /* CONTACT FORM TRANSMISSION LOGIC */
+    const contactForm = document.querySelector('.transmission-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = contactForm.querySelector('button');
+            const originalText = btn.innerText;
+            
+            // Visual feedback for transmission
+            contactForm.classList.add('glitching');
+            btn.innerText = "TRANSMITTING...";
+            btn.style.pointerEvents = "none";
+
+            setTimeout(() => {
+                contactForm.classList.remove('glitching');
+                btn.innerText = "SUCCESS: MESSAGE SENT";
+                contactForm.reset();
+                
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.pointerEvents = "all";
+                }, 2500);
+            }, 1200);
+        });
+    }
 });
 
 /* SYSTEM BOOT & NAVIGATION LOGIC */

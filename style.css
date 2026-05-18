@@ -11,6 +11,12 @@
   --font-mono: 'JetBrains Mono', monospace;
 }
 
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  scroll-padding-top: 70px; /* Offset for the fixed header height */
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -165,8 +171,10 @@ nav ul li a:hover {
 /* SECTION CONTAINERS */
 section {
   min-height: 100vh;
-  padding: 120px 10% 60px 10%;
+  padding: 80px 10% 60px 10%;
   position: relative;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .section-tag {
@@ -361,6 +369,90 @@ section {
   }
 }
 
+/* PROJECT SLIDER STYLES */
+.project-slider-container {
+  display: flex;
+  align-items: center; /* Vertically centers buttons relative to the card */
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.project-slider-wrapper {
+  flex: 1;
+  max-width: 750px; /* Slightly smaller video for better screen fit */
+  overflow: hidden; /* Hides the cards that aren't active */
+  transition: all 0.3s ease;
+}
+
+/* Glitch Effect Class */
+.glitching {
+  animation: slider-glitch 0.3s steps(2) forwards;
+}
+
+@keyframes slider-glitch {
+  0% { transform: skew(0deg); filter: hue-rotate(0deg) brightness(1); }
+  25% { transform: skew(3deg); filter: hue-rotate(90deg) brightness(1.5); }
+  50% { transform: skew(-3deg); filter: hue-rotate(180deg) contrast(2); }
+  75% { transform: skew(1deg); filter: hue-rotate(270deg) brightness(1.2); }
+  100% { transform: skew(0deg); filter: hue-rotate(0deg) brightness(1); }
+}
+
+.project-grid {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth sci-fi slide */
+  gap: 0;
+}
+
+.card {
+  flex: 0 0 100%; /* Each card takes full width of the container */
+  padding: 0 10px;
+}
+
+.slider-btn {
+  background: transparent;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+  transition: all 0.3s;
+}
+
+.slider-btn svg {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+
+.slider-btn:hover {
+  background: rgba(243, 198, 35, 0.1);
+  box-shadow: 0 0 15px rgba(243, 198, 35, 0.3);
+}
+
+.slider-btn:hover svg {
+  transform: scale(1.1);
+}
+
+.prev-btn:hover svg { transform: translateX(-3px) scale(1.1); }
+.next-btn:hover svg { transform: translateX(3px) scale(1.1); }
+
+/* RESPONSIVE TWEAK FOR SLIDER */
+@media (max-width: 1100px) {
+  .project-slider-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .project-slider-wrapper {
+    max-width: 100%;
+  }
+}
+
 /* VIDEO CONTAINER STYLES */
 .card-video-container {
   aspect-ratio: 16 / 9; /* Matches standard video shape */
@@ -480,6 +572,52 @@ section {
   color: var(--text-main);
   margin-bottom: 40px;
   line-height: 1.6;
+}
+
+/* TRANSMISSION FORM STYLES */
+.transmission-form {
+  margin-bottom: 40px;
+  border: 1px solid var(--border-color);
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+  transition: all 0.3s ease;
+}
+
+.form-header {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-color);
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.transmission-form input,
+.transmission-form textarea {
+  width: 100%;
+  background: var(--bg-dark);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.transmission-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.transmission-form input:focus,
+.transmission-form textarea:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px rgba(243, 198, 35, 0.1);
 }
 
 /* CONTACT LINKS GRID */
